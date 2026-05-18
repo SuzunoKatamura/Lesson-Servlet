@@ -1,41 +1,46 @@
 package chapter5;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-/**
- * Servlet implementation class Practice04
- */
-@WebServlet("/Practice04")
+import tool.Page;
+
+
+@WebServlet("/chapter5/practice04")
 public class Practice04 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Practice04() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public void doPost(
+			HttpServletRequest request, HttpServletResponse response
+			) throws ServletException, IOException {
+		response.setContentType("text/html; charset = UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String name = request.getParameter("name");
+		String ageString = request.getParameter("age");
+		
+		Page.header(out);
+		
+		try {
+			int age = Integer.parseInt(ageString);
+			if (age < 18) {
+				out.println("こんにちは、" +name+ "さん。未成年ですね。");
+			} else {
+				out.println("こんにちは、" +name+ "さん。大人ですね。");
+			}
+		} catch (NumberFormatException e) {
+			out.println("年齢は数値で入力してください。");
+		}
+		
+		Page.footer(out);
+		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
+		
+
+	
