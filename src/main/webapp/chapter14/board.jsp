@@ -14,15 +14,9 @@ body {
     color: #dcddde;
 }
 
-/* 全体チャットエリア */
-.chat {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
 /* 各メッセージ */
-.message {
+.posts {
     padding: 10px;
     margin-bottom: 10px;
     background: #40444b;
@@ -42,7 +36,7 @@ body {
     line-height: 1.4;
 }
 
-/* 投稿フォーム（あるなら） */
+/* 投稿フォーム */
 form {
     max-width: 700px;
     margin: 20px auto;
