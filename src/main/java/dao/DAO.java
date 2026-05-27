@@ -20,7 +20,7 @@ public class DAO {
 		return ds.getConnection();
 	}
 	
-	public List<Employee> findAll() {
+	public List<Employee> findAll() throws Exception {
 		return null;
 	}
 
